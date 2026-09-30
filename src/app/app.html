@@ -1,0 +1,145 @@
+<header>
+  <h1>請假管理系統</h1>
+  <p>員工請假申請與審核平台</p>
+</header>
+
+<main>
+  <section>
+    <h2>歡迎使用</h2>
+    <p>先新增員工資料，再建立請假申請。</p>
+  </section>
+
+  <section>
+    <h2>新增員工</h2>
+
+    <form (ngSubmit)="addEmployee()">
+      <label for="name">姓名</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        [(ngModel)]="employeeName"
+        placeholder="請輸入姓名"
+      />
+
+      <label for="email">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        [(ngModel)]="email"
+        placeholder="請輸入 Email"
+      />
+
+      <label for="department">部門</label>
+      <input
+        id="department"
+        name="department"
+        type="text"
+        [(ngModel)]="department"
+        placeholder="例如：Engineering"
+      />
+
+      <button  type="submit">新增員工</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>請假紀錄</h2>
+
+    <ul>
+      @for (leave of leaves; track leave.id) {
+
+      <li>
+        {{ leave.employeeName }} - {{ getLeaveTypeText(leave.leaveType) }} -        {{ leave.startDate }} 至 {{ leave.endDate }} -
+        {{ leave.leaveDays }} 天 - {{ getLeaveStatusText(leave.status) }}        - 原因：{{ leave.reason }}
+        @if (leave.status === 'PENDING') {
+        <button
+          type="button"
+          (click)="updateLeaveStatus(leave.id, 'APPROVED')"
+        >
+          核准
+        </button>
+
+        <button
+          type="button"
+          (click)="updateLeaveStatus(leave.id, 'REJECTED')"
+        >
+          拒絕
+        </button>
+        }
+      </li>
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2>申請請假</h2>
+
+    <form (ngSubmit)="addLeave()">
+      <label for="employee">員工</label>
+      <select
+        id="employee"
+        name="employee"
+        [(ngModel)]="selectedEmployeeId"
+      >
+        <option [ngValue]="0">請選擇員工</option>
+
+        @for (employee of employees; track employee.id) {
+        <option [ngValue]="employee.id">
+          {{ employee.name }} - {{ employee.department }}
+        </option>
+        }
+      </select>
+
+      <label for="startDate">開始日期</label>
+      <input
+        id="startDate"
+        name="startDate"
+        type="date"
+        [(ngModel)]="startDate"
+      />
+
+      <label for="endDate">結束日期</label>
+      <input
+        id="endDate"
+        name="endDate"
+        type="date"
+        [(ngModel)]="endDate"
+      />
+
+      <label for="leaveType">假別</label>
+      <select
+        id="leaveType"
+        name="leaveType"
+        [(ngModel)]="leaveType"
+      >
+        <option value="ANNUAL">年假</option>
+        <option value="SICK">病假</option>
+        <option value="PERSONAL">事假</option>
+      </select>
+
+      <label for="reason">請假原因</label>
+      <textarea
+        id="reason"
+        name="reason"
+        [(ngModel)]="reason"
+        placeholder="請輸入請假原因"
+      ></textarea>
+
+      <button type="submit">送出請假申請</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>員工清單</h2>
+
+    <ul>
+      @for (employee of employees; track employee.id) {
+      <li>
+        {{ employee.name }} - {{ employee.email }} - {{ employee.department }}
+      </li>
+      }
+    </ul>
+  </section>
+</main>

@@ -1,0 +1,94 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f4f7fb;
+  color: #1f2937;
+}
+
+header {
+  padding: 24px 40px;
+  background-color: #1f4e79;
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+header p {
+  margin: 8px 0 0;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+section {
+  padding: 32px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+  margin-top: 0;
+}
+form {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 12px;
+  padding: 12px;
+  border: 0;
+  border-radius: 6px;
+  background-color: #1f4e79;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #163a5c;
+}
+
+li button {
+  margin: 0 0 0 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+li button:first-of-type {
+  background-color: #18794e;
+}
+
+li button:first-of-type:hover {
+  background-color: #14663f;
+}
+
+li button:last-of-type {
+  background-color: #b42318;
+}
+
+li button:last-of-type:hover {
+  background-color: #8f1c13;
+}
